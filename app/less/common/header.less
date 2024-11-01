@@ -1,0 +1,476 @@
+// custom LESS
+
+@keyframes around {
+    0% {
+      transform: rotate(0deg)
+    }
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+  
+  .ico-go-to-top {
+    margin-top: -22.5px;
+    position: fixed;
+    right: 0;
+    top: 80%;
+    z-index: 102;
+  }
+  
+  .headerCont {
+    .box-sizing();
+    background-image: url('/images/ikony_bg.jpg');
+    background-size: cover;
+    background-position: 0 0;
+    border-bottom: 1px solid #fff;
+    height: 143px;
+    left: 0;
+    padding-top: 15px;
+    position: fixed;
+    top: 0;
+    transition: all .05s ease-in;
+    width: 100%;
+    z-index: 999;
+  
+    &.toFront {
+      z-index: 2000;
+    }
+  
+    .logo {
+  
+      img {
+        max-width: 80%;
+        height: auto;
+      }
+    }
+  
+    &.slim {
+      height: 80px;
+      padding-top: 15px;
+  
+      .logo {
+  
+        img {
+          height: auto;
+          max-width: 100%;
+          width: 200px;
+        }
+      }
+  
+      .simpleMenu {
+        margin-top: 0.375em;
+  
+        .firstLevelItem {
+  
+          a {
+            font-size: 1.125em;
+          }
+        }
+      }
+    }
+  
+    /*loader START */
+    .inputContainer {
+      position: relative;
+    }
+    .icon-container {
+      display: none;
+      position: absolute;
+      right: 33px;
+      top: 10px;
+      z-index: 99999;
+    }
+    .loader {
+      position: relative;
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      animation: around 5.4s infinite;
+    }
+  
+    .loader::after, .loader::before {
+      content: "";
+      background: white;
+      position: absolute;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-width: 2px;
+      border-color: #333 #333 transparent transparent;
+      border-style: solid;
+      border-radius: 20px;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      animation: around 0.7s ease-in-out infinite;
+    }
+  
+    .loader::after {
+      animation: around 0.7s ease-in-out 0.1s infinite;
+      background: transparent;
+    }
+    /* loader END */
+  
+  
+    .simpleMenu {
+      margin-top: 42px;
+  
+          &.withSubmenu .firstLevelItem .accordionMenu a {
+              font-size: 1em !important;
+              text-transform: uppercase;
+          } 
+    }
+  }
+  
+  
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // variables for template part
+  @headerBgColor: #fff;
+  @menuItemBorderColor: #c8473b;
+  @firstLevelItemTextColor: #fff;
+  @firstLevelItemTextColorActive: #fff;
+  @firstLevelItemFontSize: 1.5em;
+  @secondLevelItemTextColor: #1d1d1b;
+  @secondLevelItemTextColorHover: #000;
+  
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+  // don't modify LESS below this line 
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+  
+  .headerCont {
+    background-color: @headerBgColor;
+  
+    .burger {
+      display: none !important;
+      cursor: pointer;
+      float: right;
+      font-size: 26px;
+      font-weight: 600;
+      margin-top: -11px;
+    }
+  
+    .simpleMenu {
+      float: right;
+  
+      &.uppercase {
+  
+        .firstLevelItem {
+          text-transform: uppercase;
+        }
+      }
+  
+      &.borderedItemsOnHover {
+  
+        .firstLevelItem {
+  
+          a {
+            border: 2px solid transparent;
+  
+            &:after {
+              content: '';
+              display: block;
+              width: 0;
+              height: 2px;
+              background: @menuItemBorderColor;
+              transition: width .3s;
+            }
+  
+            &:hover, &.active {
+              /* border-color: @menuItemBorderColor; */
+  
+              &:after {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+  
+      &.withSubmenu {
+  
+        .firstLevelItem  .accordionMenu {
+          text-transform: none;
+          font-weight: 300;
+          border-top: 0;
+  
+            li {
+              white-space: nowrap;
+            }
+  
+            a, label {
+              color: @secondLevelItemTextColor;
+              font-size: 0.750rem;
+              line-height: 1.875rem ;
+            }
+  
+          & > a, & > label {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+      }
+  
+      .firstLevelItem {
+        float: left;
+        line-height: 1.2;
+  
+        &.menuIconsCont {
+          top: -2px;
+        }
+  
+        a {
+          color: @firstLevelItemTextColor;
+          display: block;
+          font-size: @firstLevelItemFontSize;
+          font-weight: 300;
+          letter-spacing: 3px;
+          margin: 0;
+          padding: 0.325em 0.75em;
+          transition: color .3s;
+          text-decoration: none;
+  
+          &:hover, &.active {
+            color: @firstLevelItemTextColorActive;
+            text-decoration: none;
+          }
+  
+          &.spriteOuterCont {
+            display: inline-block;
+            margin-left: 0.25em;
+            padding-left: 0;
+            padding-right: 0;
+  
+            &.fbOuterCont {
+              margin-left: 0.75em;
+            }
+  
+            &:first-of-type {
+              margin-left: 0.75em;
+            }
+  
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+  
+      &.withSubmenu {
+  
+        .firstLevelItem {
+          position: relative;
+          padding-bottom: 16px;
+  
+          &:hover {
+  
+            ul {
+              display: block;
+            }
+          }
+  
+         & > ul {
+            background: #fff;
+            border-top: 3px solid #f8941e;
+            display: none;
+            left: 0;
+            min-width: 100%;
+            position: absolute;
+            top: 100%;
+  
+            &:before {
+              content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAKCAYAAABSfLWiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJxJREFUeNpiDJ++UI6BgWEyEKcA8WsG4oE4EK8C4hwmIDEViP2AeD8Qi5JgAEi9HRBPARmSDMRXgVibSINgBmgC8XUgDgcZ8gqInYg0CN0AkL4XTFBJYgzCagBIgglJET6DJHAZgG4ILoNA9D5cBoAACxZ/wwzaBzXgLBCz4zIAm0vQDfoGNeALLgPwGQIzyAuI3wKxAy4DQAAgwACrOzEOe/6EPAAAAABJRU5ErkJggg==);
+              bottom: 100%;
+              left: 50%;
+              transform: translate(-10px, -3px);
+              position: absolute;
+            }
+          }
+  
+          .secondLevelItem {
+            white-space: nowrap;
+  
+            a {
+              color: @secondLevelItemTextColor;
+  
+              &:hover, &.active {
+                color: @secondLevelItemTextColorHover;
+              }
+  
+              &:after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .accordionMenu {
+  
+      label {
+        display: block;
+        padding: 0.325em 0.75em;
+      }
+  
+      label, a {
+        position: relative;
+  
+        &:hover {
+  
+          &:after {
+            content: '';
+            position: absolute;
+            background: #000;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            .opacity(0.055);
+          }
+        }
+      }
+  
+      .ico-arrow-right-xs {
+        float: right;
+        margin-top: 0.5rem;
+        margin-right: 0.5rem;
+      }
+  
+      /**
+     * Styling first level lists items
+     */
+      .group-list a, .group-list label {
+        .box-sizing();
+        background: #faf8f6;
+        display: block;
+        padding-left: 1.75rem !important;
+        min-width: 100%;
+      }
+  
+      .group-list a:focus, .group-list a:hover, .group-list label:focus, .group-list label:hover {
+        color: #535354 !important;
+        background: darken(#faf8f6, 20);
+      }
+  
+      /**
+       * Styling second level list items
+       */
+  
+      .sub-group-list a, .sub-group-list label {
+        padding-left: 2.5rem !important;
+        margin-right: 1rem !important;
+        background: darken(#faf8f6, 5);
+      }
+  
+      .sub-group-list a:focus, .sub-group-list a:hover, .sub-group-list label:focus, .sub-group-list label:hover {
+        color: #535354 !important;
+        background: darken(#faf8f6, 20);
+      }
+  
+      /**
+       * Styling third level list items
+       */
+  
+      .sub-sub-group-list a, .sub-sub-group-list label {
+        padding-left: 3.25rem !important;
+        background: darken(#faf8f6, 10);
+      }
+  
+      .sub-sub-group-list a:focus, .sub-sub-group-list a:hover, .sub-sub-group-list label:focus, .sub-sub-group-list label:hover {
+        color: #535354 !important;
+        background: darken(#faf8f6, 20);
+      }
+  
+      /**
+       * Hide nested lists
+       */
+  
+      .group-list, .sub-group-list, .sub-sub-group-list {
+        height: 100%;
+        max-height: 0;
+        overflow: hidden;
+        -webkit-transition: max-height .5s ease-in-out;
+        transition: max-height .5s ease-in-out;
+      }
+  
+      input[type=checkbox]:checked + label + ul { /* reset the height when checkbox is checked */
+        max-height: 1000px;
+      }
+    }
+  }
+  
+  .sidenav {
+    background-color: rgba(0, 0, 0, .9);
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 60px;
+    position: fixed;
+    text-transform: uppercase;
+    top: 0;
+    transition: 0.2s;
+    width: 0;
+    z-index: 1001;
+  
+    a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      transition: 0.3s;
+    }
+  
+    .secondLevelItem {
+      margin-left: 1em;
+    }
+  
+    .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+      outline: none;
+    }
+  }
+  
+  /*
+   *	media queries
+  */
+  
+  @media all and (max-width: 1200px) {
+  
+    .headerCont {
+  
+      .burger {
+        display: inline-block !important;
+      }
+  
+      .firstLevelItem {
+        display: none;
+  
+        &.menuIconsCont {
+          display: block;
+        }
+      }
+    }
+  }
+  
+  
+  
+  @media all and (max-width: 340px) {
+  
+    .headerCont {
+  
+      .logo {
+  
+        img {
+          margin-top: 15px;
+          height: auto;
+          max-width: 80%;
+          width: 80%;
+        }
+      }
+    }
+  }
+  

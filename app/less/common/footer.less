@@ -1,0 +1,179 @@
+.footerCont {
+  
+    .container {
+      padding-top: 35px;
+      padding-bottom: 25px;
+    }
+  
+    .menuCont {
+      color: #fff;
+      float: right;
+      text-transform: uppercase;
+  
+      a {
+        color: #fff;
+      }
+  
+      ul {
+        border-top: 1px solid #fff;
+        float: left;
+        margin-right: 60px;
+        padding-top: 0.5em;
+  
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+  
+      .title {
+        font-size: 0.875em;
+        font-weight: 600;
+        letter-spacing: 2px;
+        line-height: 1.75;
+      }
+  
+      .link {
+        font-size: 0.875em;
+        font-weight: 300;
+        letter-spacing: 2px;
+        line-height: 1.75;
+      }
+    }
+  }
+  
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!! 
+  // variables for template part
+  @footerBgColor: #f8f4f2;
+  @infoTxtColor: #fff;
+  @id2itContTxtColor: #fff;
+  @id2itWebsiteLinkColor: #fff;
+  
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+  // don't modify LESS below this line 
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+  
+  .footerCont {
+    background-color: @footerBgColor;
+    position: relative;
+  
+    .logo {
+      display: block;
+      height: auto;
+      margin: 2em auto;
+      max-width: 90%;
+    }
+    
+    &.centered {
+        text-align: center; 
+    
+        .infoCont {
+        
+            .id2itCont {
+                float: none;
+                font-size: 1em;
+            }
+        }
+    }
+  
+    .cookiesCont {
+      background-color: @footerBgColor;
+      bottom: 0;
+      display: none;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      z-index: 101;
+  
+      .container {
+        text-align: center;
+      }
+  
+      p {
+        color: @infoTxtColor;
+        letter-spacing: 2px;
+        font-size: 12px;
+        font-weight: 300;
+        text-transform: uppercase;
+        
+  
+        a {
+          color: #fff;
+          text-decoration: underline;
+  
+          &:hover {
+            color: @infoTxtColor;
+          }
+        }
+      }
+  
+      .close-ico {
+        cursor: pointer;
+        float: right;
+      }
+    }
+  
+    .infoCont {
+      letter-spacing: 3px;
+      line-height: 1.6;
+      font-weight: 300;
+      text-transform: uppercase;
+      
+      .infoTxt {
+        color: @infoTxtColor;
+        font-size: 12px;
+        margin-top: 40px;
+        text-align: right;
+        padding: 10px 20px;
+      }
+      
+      .id2itCont {
+        color: @id2itContTxtColor;
+        display: block;
+        
+        .id2itWebsiteLink {
+          color: @id2itWebsiteLinkColor;
+        }
+      }
+    }
+  }
+  
+  
+  
+  /*
+   * 	media queries
+   */
+  
+  
+  @media all and (max-width: 800px) {
+  
+    .footerCont {
+  
+      .menuCont {
+  
+        ul {
+          float: none;
+          margin-bottom: 1em;
+  
+          &:last-of-type {
+            margin-right: 60px;
+          }
+        }
+      }
+    }
+  }
+  
+  @media all and (max-width: 640px) {
+      
+    .footerCont {
+      
+      .infoCont {
+        
+        .id2itCont {
+          display: block;
+          float: none;
+          margin-bottom: 2em;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,66 @@
+{
+  "name": "id2it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "_dev-server.js",
+  "devDependencies": {
+    "browser-sync": "^3.0.2",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^8.2.2",
+    "cpx": "^1.5.0",
+    "esm": "^3.2.25",
+    "less": "^4.2.0",
+    "mkdirp": "^3.0.1",
+    "modern-normalize": "^2.0.0",
+    "npm-run-all": "^4.1.5",
+    "php-server": "^2.0.0",
+    "prettier": "^3.3.1",
+    "rimraf": "^5.0.7",
+    "stylelint": "^16.6.1",
+    "stylelint-config-recommended-scss": "^14.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-order": "^6.0.4"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "concurrently \"npm:dev-server\" \"npm:watch:less\" \"npm:browser-sync\"",
+    "dev-server": "node _dev-server.js",
+    "less:compile": "lessc ./app/less/style.less ./public/css/style.css",
+    "watch:less": "chokidar \"./app/less/**/*.less\" -c \"npm run less:compile\"",
+    "clear-smarty-tmp": "rimraf ./app/smarty/views_compiled/*",
+    "clear-css": "rimraf .app/public/css/*.css",
+    "format": "prettier --write \"**/*.{scss,css,js,jsx,md,ts}\"",
+    "lint:stylelint": "stylelint \"./less/*.less\" --syntax less --ignorePath .gitignore --max-warnings 0",
+    "lint:stylelint:fix": "stylelint \"./less/*.less\" --syntax less --ignorePath .gitignore --fix",
+    "browser-sync": "browser-sync start --proxy \"localhost:8899\" --files \"./js/*.js, ./public/css/*.css, ./app/**/*.php, ./app/**/*.tpl\"",
+    "build-smarty-structure": "mkdirp ftp-build/smarty/cache ftp-build/smarty/config ftp-build/smarty/views_compiled",
+    "build-api": "cpx \"public/api/**/!(*composer.json|*composer.lock)\" \"ftp-build/public/api\" && cpx \"public/api/.htaccess\" \"ftp-build/public/api\"",
+    "build-app": "npm run build-smarty-structure && cpx \"app/**/!(composer.lock|composer.json)\" \"ftp-build/public/app\" && cpx \"smarty/**\" \"ftp-build/smarty\" && cpx \"public/!(app-cms|api)/**\" \"ftp-build/public\" && cpx \"public/.htaccess\" \"ftp-build/public\"  && cpx \"publicindex.php\" \"ftp-build/public\"",
+    "build-app-cms": "npm --prefix ./public/app-cms run build && cpx \"public/app-cms/dist/app-cms/browser/**\" \"ftp-build/public/app-cms\"",
+    "build-vendors": "cpx \"vendor-api/**\" \"ftp-build/vendor-api\" && cpx \"vendor-app/**\" \"ftp-build/vendor-app\"",
+    "build-all": "rimraf ftp-build && npm-run-all -p build-api build-app build-app-cms build-vendors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://nitek@bitbucket.org/mppgroup/www-base.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/mppgroup/www-base#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{less,js,md,son}": [
+      "npm format:githook"
+    ],
+    "**/*.{jsx,js}": [
+      "eslint"
+    ],
+    "less/*.less": [
+      "npm lint:stylelint"
+    ]
+  }
+}

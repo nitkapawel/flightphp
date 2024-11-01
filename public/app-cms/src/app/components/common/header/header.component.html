@@ -1,0 +1,12 @@
+<header>
+    <div class="logo">id2it CMS app</div>
+    <nav>
+      <ul>
+        <li *ngIf="isAuthenticated">Dashboard</li>
+        <li *ngIf="isAuthenticated && userRole === 'admin'">Admin Panel</li>
+        <li *ngIf="!isAuthenticated"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isAuthenticated"><a (click)="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  

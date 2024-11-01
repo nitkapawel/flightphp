@@ -1,0 +1,6 @@
+/vendor-app/
+/vendor-api/
+/smarty/views_compiled
+
+node_modules/
+ftp-build/

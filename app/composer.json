@@ -1,0 +1,17 @@
+{
+    "name": "id2it/app",
+    "authors": [
+        {
+            "name": "id2it",
+            "email": "kontakt@id2it.pl"
+        }
+    ],
+    "require": {
+        "flightphp/core": "^3.12",
+        "smarty/smarty": "^5.4",
+        "firebase/php-jwt": "^6.10"
+    },
+    "config": {
+        "vendor-dir": "../vendor-app"
+    }
+}

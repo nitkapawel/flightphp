@@ -1,0 +1,18 @@
+# Blokuje dostęp do pliku .env
+<Files ".env">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Opcjonalnie: Zablokuj dostęp do innych poufnych plików
+<FilesMatch "\.(ini|log|md)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+RewriteEngine On
+
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !^(\/index\.php|\/public\/)
+RewriteRule ^(.*)$ index.php [L]

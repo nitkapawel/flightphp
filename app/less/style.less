@@ -1,0 +1,76 @@
+@import (inline) './../../node_modules/modern-normalize/modern-normalize.css';
+
+@import "common/layout.less";
+@import "common/common.less";
+@import "common/header.less";
+@import "common/footer.less";
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+ul,
+li,
+input,
+img,
+div {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #8d847d;
+  text-decoration: none;
+
+  &:hover {
+    color: @colorTxt1;
+    text-decoration: underline;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  border: 0 none;
+}
+
+body {
+  .box-sizing();
+  background-color: #fff;
+  color: @colorTxt1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+@media all and (max-width: 380px) {
+
+  body {
+    overflow-x: initial;
+  }
+}
+
+.container {
+  .box-sizing;
+
+  margin: 0 auto;
+  max-width: 100%;
+  min-width: 280px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  width: @siteWidth;
+  z-index: 100;
+}
+
+@import "main.less";
+@import "contact.less";

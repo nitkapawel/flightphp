@@ -1,0 +1,16 @@
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php74 .php
+</IfModule>
+
+
+# Blokuje dostęp do pliku .env
+<Files ".env">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Opcjonalnie: Zablokuj dostęp do innych poufnych plików
+<FilesMatch "\.(ini|log|md)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

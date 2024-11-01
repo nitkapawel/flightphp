@@ -1,0 +1,16 @@
+{
+    "name": "id2it/api",
+    "authors": [
+        {
+            "name": "id2it",
+            "email": "kontakt@id2it.pl"
+        }
+    ],
+    "require": {
+        "flightphp/core": "^3.12",
+        "firebase/php-jwt": "^6.10"
+    },
+    "config": {
+        "vendor-dir": "../vendor-api"
+    }
+}
