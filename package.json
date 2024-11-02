@@ -23,7 +23,8 @@
   },
   "type": "module",
   "scripts": {
-    "start": "concurrently \"npm:dev-server\" \"npm:watch:less\" \"npm:browser-sync\"",
+    "start": "concurrently \"npm:dev-server\" \"npm:watch:less\" \"npm:browser-sync\" \"npm:run-app-cms\"",
+    "run-app-cms": "npm --prefix ./public/app-cms run start",
     "dev-server": "node _dev-server.js",
     "less:compile": "lessc ./app/less/style.less ./public/css/style.css",
     "watch:less": "chokidar \"./app/less/**/*.less\" -c \"npm run less:compile\"",

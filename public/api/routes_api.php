@@ -3,6 +3,20 @@ require __DIR__ .'/../../vendor-api/autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+$allowedOrigins = 'http://localhost:4200'; // Zmień na swój dozwolony adres
+
+Flight::before('start', function() use ($allowedOrigins) {
+    header("Access-Control-Allow-Origin: $allowedOrigins");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+    // Obsługuje zapytania OPTIONS
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+        http_response_code(204);
+        exit;
+    }
+});
+
 function generateToken($user) {
     $payload = [
         'id' => $user['id'],
@@ -56,7 +70,21 @@ Flight::route('GET /test', function() {
     Flight::json(['message' => 'It works!']);
 });
 
-
+Flight::route('POST /upload-file', function(){
+    // TODO: Add the logic for the uploaded files
+    Flight::json([
+        'success' => true,
+        'files' => [
+            [
+                'url' => '/images/top_bg.jpg', // Full URL to the uploaded image
+                'name' => 'my-image.png',         // Original filename
+                'size' => 12345,                  // File size in bytes
+                'type' => 'image/png'            // File MIME type
+            ]
+        ],
+        'message' => 'File uploaded successfully'
+    ]);
+});
 
 // Przykładowa trasa korzystająca z połączenia
 // Flight::route('GET /users', function() {
