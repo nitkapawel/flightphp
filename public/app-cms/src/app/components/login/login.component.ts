@@ -42,6 +42,7 @@ export class LoginComponent {
         if (response.token) {
           localStorage.setItem(TOKEN_KEY, response.token);
           console.log('logged successfully -> redirect to dashboard');
+          this.authService.authStateSubject.next(true);
           this.router.navigate(['/dashboard']);
         }
       },

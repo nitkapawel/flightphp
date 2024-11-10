@@ -9,7 +9,7 @@ import { ArticleFormComponent } from './components/articles/article-form/article
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] }, 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'article', component: ArticleFormComponent, canActivate: [AuthGuard] },
+  { path: 'article', component: ArticleFormComponent, canActivate: [AuthGuard], data: { role: 'admin' } },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];
